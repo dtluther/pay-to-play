@@ -1,4 +1,7 @@
-[
+const athletes_json = {
+"type": "FeatureCollection",
+
+"athletes": [
  {
    "Rank": 1,
    "Name": "Cristiano Ronaldo",
