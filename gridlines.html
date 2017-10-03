@@ -77,15 +77,15 @@
             .tickPadding(10)
           )
 
-    // tooltips
-    var tooltipDiv = d3.select('g')
-      .append('div')
-      .attr('class', 'tooltip')
-      .style('opacity', 0)
-
     // getting the data from athletes.js
     var athletes = svg.append('g')
       .attr('id', 'athletes')
+
+    // tooltips
+    var tooltipDiv = d3.select('body')
+      .append('div')
+      .attr('class', 'tooltip')
+      .style('opacity', 0)
 
     athletes.selectAll('.circle')
       .data(athletesJson.athletes)

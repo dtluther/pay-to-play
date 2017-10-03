@@ -1,7 +1,12 @@
 body {
   background-color: #3b3b3b ;
-  display: flex;
-  justify-content: center;
+  /*display: flex;
+  justify-content: center;*/
+  /*margin: 0 50px;*/
+}
+
+svg {
+  margin: 0 auto;
 }
 
 .line {
