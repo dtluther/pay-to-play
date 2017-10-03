@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Pay to Play</title>
+    <script src="javascripts/bundle.js" charset="utf-8"></script>
+    <script src="https://d3js.org/d3.v4.js"></script>
+
+    <style media="screen">
+      /*.bar { fill: steelblue; }*/
+    </style>
+  </head>
+  <body>
+    <script type="text/javascript">
+      const margin = {top: 20, right: 20, bottom: 30, left: 40},
+        width = 960 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom;
+
+      const xRange = d3.scaleLinear().range([0, width]);
+      const yRange = d3.scaleLinear().range([height, 0]);
+
+      const xAxis = d3.axisBottom()
+        .scale(xRange)
+        .ticks(10);
+      const yAxis = d3.axisLeft()
+        .scale(yRange)
+        .ticks(10);
+
+      const svg = d3.select('body')
+        .append('svg')
+        .attr('width', width)
+        .attr('height', height)
+        .append("g")
+        .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+      d3.json('/Users/lexluther/Documents/aa_projects/pay_to_play/athletes.json', function(error, data) {
+        console.log(data);
+        data.forEach(function(d) {
+          console.log(d)
+        })
+
+        x.domain(data.map(function(d) { return d.Salary; }));
+        y.domain([0, d3.max(data, function(d) { return d.Pay; })]);
+      })
+
+      svg.selectAll(".bar")
+        .data(data)
+        .enter()
+        .append('rect')
+        .attr('class', 'bar')
+        .attr('x', function(d) { return x(d.Salary); })
+        .attr('width', x.bandwitdh())
+        .attr('y', function(d) { return y(d.Pay); })
+        .attr('height', function(d) { return height = y(d.Pay); });
+
+      svg.append('g')
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x));
+
+      svg.append('g')
+        .call(d3.axisLeft(y));
+
+      // const athletes = d3.selectAll('path')
+      //   .data(athletes_json.athletes)
+      //   .enter()
+      //   .append('path')
+      //   .attr('fill', '#900')
+    </script>
+  </body>
+</html>

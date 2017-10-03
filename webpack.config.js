@@ -2,9 +2,9 @@
 
 module.exports = {
   context: __dirname,
-  entry: "javascripts/root.js",
+  entry: "./javascripts/root.js",
   output: {
-    filename: "javascripts/bundle.js"
+    filename: "./javascripts/bundle.js"
     // path: path.resolve(__dirname, 'app', 'assets', 'javascripts'),
     // filename: "bundle.js"
   },
