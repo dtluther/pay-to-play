@@ -1,4 +1,5 @@
 body {
+  background-color: #3b3b3b ;
   display: flex;
   justify-content: center;
 }
@@ -17,4 +18,16 @@ body {
 
 .grid path {
   stroke-width: 0;
+}
+
+.domain {
+  stroke: lightgrey;
+}
+
+.axis {
+  stroke: lightgrey;
+}
+
+.tick line {
+  stroke: lightgrey;
 }

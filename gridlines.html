@@ -6,10 +6,11 @@
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="javascripts/athletes.js" charset="utf-8"></script>
     <link rel="stylesheet" href="stylesheets/gridlines.css">
+    <link rel="stylesheet" href="stylesheets/circles.css">
   </head>
   <body>
     <script type="text/javascript">
-    var margin = {top: 20, right: 20, bottom: 30, left: 50},
+    var margin = {top: 20, right: 20, bottom: 50, left: 50},
         width = 1000 - margin.left - margin.right,
         height = 600 - margin.top - margin.bottom;
 
@@ -61,15 +62,28 @@
 
     // x-axis
     svg.append('g')
+      .attr('class', 'axis')
       .attr('transform', 'translate(0,' + height + ')')
       .call(d3.axisBottom(x)
+            .tickSize(25)
+            .tickPadding(10)
           )
 
     // y-axis
     svg.append('g')
+      .attr('class', 'axis')
       .call(d3.axisLeft(y)
+            .tickSize(25)
+            .tickPadding(10)
           )
 
+    // tooltips
+    var tooltipDiv = d3.select('g')
+      .append('div')
+      .attr('class', 'tooltip')
+      .style('opacity', 0)
+
+    // getting the data from athletes.js
     var athletes = svg.append('g')
       .attr('id', 'athletes')
 
@@ -77,23 +91,69 @@
       .data(athletesJson.athletes)
       .enter()
       .append('circle')
-      .attr('class', 'circle')
+      .attr('class', function(d) {
+        switch(d.Sport) {
+          case "Soccer":
+            return "circle soccer";
+          case "Basketball":
+            return "circle basketball";
+          case "Tennis":
+            return "circle tennis";
+          case "Football":
+            return "circle football";
+          case "Golf":
+            return "circle golf";
+          case "Auto Racing":
+            return "circle racing";
+          case "Track":
+            return "circle track";
+          case "Mixed Martial Arts":
+            return "circle mma";
+          case "Baseball":
+            return "circle baseball";
+          case "Boxing":
+            return "circle boxing";
+        }
+      })
       .attr('r', function(d) {
-        return d.Pay / 3000000
+        return d.Pay / 3000000 * 1.2
       })
       .attr('transform', function(d) {
-        x = d.Years_Competing_Professionally * 31;
-        y = d.Championships * 5
-        return 'translate(' + x + ',' + (550 - y) + ')'
+        let x = d.Years_Competing_Professionally * width / 30;
+        let y = d.Championships * height / 110
+        return 'translate(' + x + ',' + (height - y) + ')'
       })
       .on('mouseover', function(d) {
+        let xTooltip = d.Years_Competing_Professionally * width / 30;
+        let yTooltip = height - (d.Championships * height / 110);
+        let r = this.r.baseVal.value;
         console.log(d)
+        d3.select(this)
+          .classed('active', true);
+        d3.select(this)
+          .attr('r', function(d) {
+            const prevRadius = d.Pay / 3000000 * 1.2;
+            return prevRadius * 1.1
+          })
+        tooltipDiv
+          .style('opacity', 0.9)
+          // .style('left', xTooltip + 'px')
+          // .style('top', yTooltip + 'px')
+          .style('z-index', 1)
+          console.log(xTooltip, yTooltip, this.r.baseVal.value)
       })
-      // .attr('transform', function(d) {
-      //   'translate(' + d')'
-      // })
+      .on('mouseout', function(d) {
+        d3.select(this)
+          .classed('active', false);
+        d3.select(this)
+          .attr('r', function(d) {
+            return d.Pay / 3000000 * 1.2;
+          })
+        tooltipDiv
+          .style('opacity', 0)
+      })
 
-    athletes.append('circle')
+    // athletes.append('circle')
 
 
 

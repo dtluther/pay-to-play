@@ -199,7 +199,7 @@ var athletesJson = {
      "Pay": 36000000,
      "Salary": 34000000,
      "Endorsements": 2000000,
-     "Sport": "Auto racing",
+     "Sport": "Auto Racing",
      "Championships": 2,
      "Years_Competing_Professionally": 16
     },

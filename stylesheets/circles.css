@@ -1,0 +1,63 @@
+.circle {
+  fill: lightgray;
+}
+
+.soccer {
+  fill: blue;
+}
+
+.basketball {
+  fill: orange;
+}
+
+.tennis {
+  fill: yellow;
+}
+
+.football {
+  fill: red;
+}
+
+.golf {
+  fill: green;
+}
+
+.racing {
+  fill: purple;
+}
+
+.track {
+  fill: lightgreen;
+}
+
+.mma {
+  fill: black;
+}
+
+.baseball {
+  fill: lightblue;
+  border: 1px solid black;
+}
+
+.boxing {
+  fill: pink;
+}
+
+.circle {
+  opacity: 0.7;
+  stroke: black;
+  stroke-width: 2;
+  cursor: pointer;
+}
+
+.active {
+  opacity: 1;
+
+}
+
+.tooltip {
+  position: absolute;
+  background: lightsteelblue;
+  width: 80px;
+  height: 30px;
+}
