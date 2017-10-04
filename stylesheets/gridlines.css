@@ -29,10 +29,12 @@ svg {
   stroke: lightgrey;
 }
 
-.axis {
+.axis line {
+  stroke-width: 2px;
   stroke: lightgrey;
 }
 
-.tick line {
-  stroke: lightgrey;
+.axis text {
+  font-size: 14px;
+  fill: lightgrey;
 }

@@ -57,8 +57,8 @@
           )
 
     // var num_x_ticks = 15
-    var x_tick_values = Array.from(Array(15).keys()).map(value => (value + 1) * 2)
-    var xTicks = d3.ticks(2, 30, 2)
+    // var x_tick_values = Array.from(Array(15).keys()).map(value => (value + 1) * 2)
+    // var xTicks = d3.ticks(2, 30, 2)
 
     // x-axis
     svg.append('g')
@@ -85,7 +85,7 @@
     var tooltipDiv = d3.select('body')
       .append('div')
       .attr('class', 'tooltip')
-      .style('opacity', 0)
+      .style('opacity', 1)
 
     athletes.selectAll('.circle')
       .data(athletesJson.athletes)
@@ -137,10 +137,12 @@
           })
         tooltipDiv
           .style('opacity', 0.9)
-          // .style('left', xTooltip + 'px')
-          // .style('top', yTooltip + 'px')
-          .style('z-index', 1)
-          console.log(xTooltip, yTooltip, this.r.baseVal.value)
+          .style('z-index', 1000)
+          // console.log(xTooltip, yTooltip, this.r.baseVal.value)
+          .html(d.Name)
+          .style('left', xTooltip + 'px')
+          .style('top', yTooltip + 'px')
+
       })
       .on('mouseout', function(d) {
         d3.select(this)
@@ -150,7 +152,7 @@
             return d.Pay / 3000000 * 1.2;
           })
         tooltipDiv
-          .style('opacity', 0)
+          .style('opacity', 1)
       })
 
     // athletes.append('circle')

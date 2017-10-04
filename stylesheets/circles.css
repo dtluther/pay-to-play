@@ -60,4 +60,8 @@
   background: lightsteelblue;
   width: 80px;
   height: 30px;
+  padding-left: 2px;
+  pointer-events: none;
+  font: 12px sans-serif black;
+  text-align: center;
 }
