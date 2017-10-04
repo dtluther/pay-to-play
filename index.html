@@ -2,70 +2,195 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Pay to Play</title>
-    <script src="javascripts/bundle.js" charset="utf-8"></script>
-    <script src="https://d3js.org/d3.v4.js"></script>
-
-    <style media="screen">
-      /*.bar { fill: steelblue; }*/
-    </style>
+    <title>Trying Again</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="javascripts/athletes.js" charset="utf-8"></script>
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheets/gridlines.css">
+    <link rel="stylesheet" href="stylesheets/circles.css">
   </head>
   <body>
+    <div class="example-div">
+
+    </div>
     <script type="text/javascript">
-      const margin = {top: 20, right: 20, bottom: 30, left: 40},
-        width = 960 - margin.left - margin.right,
-        height = 500 - margin.top - margin.bottom;
+    var margin = {top: 150, right: 20, bottom: 75, left: 80},
+        width = 1000 - margin.left - margin.right,
+        height = 700 - margin.top - margin.bottom;
 
-      const xRange = d3.scaleLinear().range([0, width]);
-      const yRange = d3.scaleLinear().range([height, 0]);
+    var xScale = d3.scaleLinear().domain([0, 26]).range([0, width]);
+    var yScale = d3.scaleLinear().domain([0, 24]).range([height, 0]);
 
-      const xAxis = d3.axisBottom()
-        .scale(xRange)
-        .ticks(10);
-      const yAxis = d3.axisLeft()
-        .scale(yRange)
-        .ticks(10);
+    var valueline = d3.line()
+        .x(function(d) { return x(d.date); })
+        .y(function(d) { return y(d.close); })
 
-      const svg = d3.select('body')
-        .append('svg')
-        .attr('width', width)
-        .attr('height', height)
-        .append("g")
+    var svg = d3.select("body").append("svg")
+        .attr('class', 'grid')
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+      .append("g")
         .attr("transform",
-          "translate(" + margin.left + "," + margin.top + ")");
+              "translate(" + margin.left + "," + margin.top + ")");
 
-      d3.json('/Users/lexluther/Documents/aa_projects/pay_to_play/athletes.json', function(error, data) {
-        console.log(data);
-        data.forEach(function(d) {
-          console.log(d)
-        })
 
-        x.domain(data.map(function(d) { return d.Salary; }));
-        y.domain([0, d3.max(data, function(d) { return d.Pay; })]);
+    // x-gridlines
+    svg.append("g")
+        .attr("class", "gridlines")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(xScale)
+            .tickSize(-height)
+            .tickFormat("")
+          )
+
+    // x-axis
+    var xAxis = svg.append('g')
+        .attr('class', 'axis')
+        .attr('transform', 'translate(0,' + height + ')')
+        .call(d3.axisBottom(xScale)
+            .tickSize(25)
+            .tickPadding(10)
+          )
+
+    // x-axis label
+    svg.append('text')
+        .attr('class', 'axis-label')
+        .attr('x', width / 2)
+        .attr('y', height + margin.bottom - 5)
+        .style('text-anchor', 'middle')
+        .text('Years Competing Professionally')
+
+    // y gridlines
+    svg.append('g')
+      .attr('class', 'gridlines')
+      .call(d3.axisLeft(yScale)
+            .tickSize(-width)
+            .tickFormat("")
+          )
+
+    // y-axis
+    svg.append('g')
+      .attr('class', 'axis')
+      .call(d3.axisLeft(yScale)
+            .tickSize(25)
+            .tickPadding(10)
+          )
+
+    // y-axis label
+    svg.append("text")
+        .attr('class', 'axis-label')
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0 - margin.left + 15)
+        .attr("x", 0 - (height / 2))
+        .style("text-anchor", "middle")
+        .text("Number of Major Championships Won");
+
+    // title
+    svg.append('text')
+      .attr('class', 'title')
+      .attr('x', width / 2)
+      .attr('y', 0 - margin.top/1.5)
+      .style('text-anchor', 'middle')
+      .text('Pay to Play')
+    // sub-title
+    svg.append('text')
+      .attr('class', 'sub-title')
+      .attr('x', width / 2)
+      .attr('y', 0 - margin.top/1.5 + 24)
+      .style('text-anchor', 'middle')
+      .text('Visualizing the Most Expensive Athletes In the Game')
+
+
+    // sports filter
+    // var filter = svg.append('div')
+    // filter.append('ul')
+
+    // getting the data from athletes.js
+    var athletes = svg.append('g')
+      .attr('id', 'athletes')
+
+    // tooltips
+    var tooltipDiv = d3.select('.example-div')
+      .append('div')
+      .attr('class', 'tooltip')
+      .style('opacity', 0)
+
+    athletes.selectAll('.circle')
+      .data(athletesJson.athletes)
+      .enter()
+      .append('circle')
+      .attr('class', function(d) {
+        switch(d.Sport) {
+          case "Soccer":
+            return "circle soccer";
+          case "Basketball":
+            return "circle basketball";
+          case "Tennis":
+            return "circle tennis";
+          case "Football":
+            return "circle football";
+          case "Golf":
+            return "circle golf";
+          case "Auto Racing":
+            return "circle racing";
+          case "Track":
+            return "circle track";
+          case "Mixed Martial Arts":
+            return "circle mma";
+          case "Baseball":
+            return "circle baseball";
+          case "Boxing":
+            return "circle boxing";
+        }
+      })
+      .attr('r', function(d) {
+        return d.Pay / 3000000 * 1.2
+      })
+      .attr('transform', function(d) {
+        var xPos = d.Years_Competing_Professionally * width / 26;
+        var yPos = d.Championships * height / 24
+        return 'translate(' + xPos + ',' + (height - yPos) + ')'
+      })
+      .on('mousemove', function(d) {
+        let xTooltip = d.Years_Competing_Professionally * width / 26;
+        let yTooltip = height - (d.Championships * height / 24);
+        let r = this.r.baseVal.value;
+        console.log(d)
+        d3.select(this)
+          .classed('active', true);
+        d3.select(this)
+          .attr('r', function(d) {
+            const prevRadius = d.Pay / 3000000 * 1.2;
+            return prevRadius * 1.1
+          })
+        tooltipDiv
+          .style('opacity', 0.8)
+          .style('z-index', 1000)
+          .style('left', d3.event.pageX + 0.5*r + 'px')
+          .style('top', d3.event.pageY - 3*r + 'px')
+          .html(
+            d.Name + '<br/>' +
+            'Major Championships: ' + d.Championships + '<br/>' +
+            '# of Pro Seasons: ' + d.Years_Competing_Professionally + '<br/>' +
+            'Total Compensation: ' + d.Pay + '<br/>' +
+            'Salary: ' + d.Salary + '<br/>' +
+            'Endorsements: ' + d.Endorsements
+          )
+      })
+      .on('mouseout', function(d) {
+        d3.select(this)
+          .classed('active', false);
+        d3.select(this)
+          .attr('r', function(d) {
+            return d.Pay / 3000000 * 1.2;
+          })
+        tooltipDiv
+          .style('opacity', 0)
       })
 
-      svg.selectAll(".bar")
-        .data(data)
-        .enter()
-        .append('rect')
-        .attr('class', 'bar')
-        .attr('x', function(d) { return x(d.Salary); })
-        .attr('width', x.bandwitdh())
-        .attr('y', function(d) { return y(d.Pay); })
-        .attr('height', function(d) { return height = y(d.Pay); });
 
-      svg.append('g')
-        .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(x));
 
-      svg.append('g')
-        .call(d3.axisLeft(y));
 
-      // const athletes = d3.selectAll('path')
-      //   .data(athletes_json.athletes)
-      //   .enter()
-      //   .append('path')
-      //   .attr('fill', '#900')
     </script>
   </body>
 </html>
