@@ -5,23 +5,28 @@
     <title>Trying Again</title>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="javascripts/athletes.js" charset="utf-8"></script>
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
     <link rel="stylesheet" href="stylesheets/gridlines.css">
     <link rel="stylesheet" href="stylesheets/circles.css">
   </head>
   <body>
+    <div class="example-div">
+
+    </div>
     <script type="text/javascript">
     var margin = {top: 20, right: 20, bottom: 50, left: 50},
         width = 1000 - margin.left - margin.right,
         height = 600 - margin.top - margin.bottom;
 
-    var x = d3.scaleLinear().domain([0, 30]).range([0, width]);
-    var y = d3.scaleLinear().domain([0, 110]).range([height, 0]);
+    var xScale = d3.scaleLinear().domain([0, 30]).range([0, width]);
+    var yScale = d3.scaleLinear().domain([0, 110]).range([height, 0]);
 
     var valueline = d3.line()
         .x(function(d) { return x(d.date); })
         .y(function(d) { return y(d.close); })
 
-    var svg = d3.select("body").append("svg")
+    var svg = d3.select(".example-div").append("svg")
+        .attr('class', 'grid')
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
       .append("g")
@@ -30,19 +35,19 @@
 
     // gridlines in x axis function
     function make_x_gridlines() {
-        return d3.axisBottom(x)
+        return d3.axisBottom(xScale)
             .ticks(20)
     }
 
     // gridlines in y axis function
     function make_y_gridlines() {
-        return d3.axisLeft(y)
+        return d3.axisLeft(yScale)
             .ticks(10)
     }
 
     // add the X gridlines
     svg.append("g")
-        .attr("class", "grid")
+        .attr("class", "gridlines")
         .attr("transform", "translate(0," + height + ")")
         .call(make_x_gridlines()
             .tickSize(-height)
@@ -50,21 +55,17 @@
           )
 
     svg.append('g')
-      .attr('class', 'grid')
+      .attr('class', 'gridlines')
       .call(make_y_gridlines()
             .tickSize(-width)
             .tickFormat("")
           )
 
-    // var num_x_ticks = 15
-    // var x_tick_values = Array.from(Array(15).keys()).map(value => (value + 1) * 2)
-    // var xTicks = d3.ticks(2, 30, 2)
-
     // x-axis
     svg.append('g')
       .attr('class', 'axis')
       .attr('transform', 'translate(0,' + height + ')')
-      .call(d3.axisBottom(x)
+      .call(d3.axisBottom(xScale)
             .tickSize(25)
             .tickPadding(10)
           )
@@ -72,7 +73,7 @@
     // y-axis
     svg.append('g')
       .attr('class', 'axis')
-      .call(d3.axisLeft(y)
+      .call(d3.axisLeft(yScale)
             .tickSize(25)
             .tickPadding(10)
           )
@@ -82,10 +83,10 @@
       .attr('id', 'athletes')
 
     // tooltips
-    var tooltipDiv = d3.select('body')
+    var tooltipDiv = d3.select('.example-div')
       .append('div')
       .attr('class', 'tooltip')
-      .style('opacity', 1)
+      .style('opacity', 0)
 
     athletes.selectAll('.circle')
       .data(athletesJson.athletes)
@@ -119,9 +120,9 @@
         return d.Pay / 3000000 * 1.2
       })
       .attr('transform', function(d) {
-        let x = d.Years_Competing_Professionally * width / 30;
-        let y = d.Championships * height / 110
-        return 'translate(' + x + ',' + (height - y) + ')'
+        var xPos = d.Years_Competing_Professionally * width / 30;
+        var yPos = d.Championships * height / 110
+        return 'translate(' + xPos + ',' + (height - yPos) + ')'
       })
       .on('mouseover', function(d) {
         let xTooltip = d.Years_Competing_Professionally * width / 30;
@@ -136,13 +137,20 @@
             return prevRadius * 1.1
           })
         tooltipDiv
-          .style('opacity', 0.9)
+          .style('opacity', 0.8)
           .style('z-index', 1000)
           // console.log(xTooltip, yTooltip, this.r.baseVal.value)
-          .html(d.Name)
-          .style('left', xTooltip + 'px')
-          .style('top', yTooltip + 'px')
+          .html(
+            d.Name + '<br/>' +
+            'Championships: ' + d.Championships + '<br/>' +
+            '# of Pro Seasons: ' + d.Years_Competing_Professionally + '<br/>'
 
+          )
+          // .html(d.Championships)
+          // .html(d.Name)
+          // .html(d.Name)
+          .style('left', xTooltip + 'px')
+          .style('top', yTooltip - r + 'px')
       })
       .on('mouseout', function(d) {
         d3.select(this)
@@ -152,10 +160,9 @@
             return d.Pay / 3000000 * 1.2;
           })
         tooltipDiv
-          .style('opacity', 1)
+          .style('opacity', 0)
       })
 
-    // athletes.append('circle')
 
 
 

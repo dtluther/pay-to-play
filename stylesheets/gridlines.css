@@ -1,13 +1,11 @@
 body {
-  background-color: #3b3b3b ;
-  /*display: flex;
-  justify-content: center;*/
+  position: relative;
+  background-color: black ;
+  display: flex;
+  justify-content: center;
   /*margin: 0 50px;*/
 }
 
-svg {
-  margin: 0 auto;
-}
 
 .line {
   fill: none;
@@ -15,13 +13,13 @@ svg {
   stroke-width: 2px;
 }
 
-.grid line {
+.gridlines line {
   stroke: lightgrey;
   stroke-opacity: 0.7;
   shape-rendering: crispEdges;
 }
 
-.grid path {
+.gridlines path {
   stroke-width: 0;
 }
 

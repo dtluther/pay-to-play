@@ -7,7 +7,7 @@
 }
 
 .basketball {
-  fill: orange;
+  fill: turquoise;
 }
 
 .tennis {
@@ -35,7 +35,7 @@
 }
 
 .baseball {
-  fill: lightblue;
+  fill: white;
   border: 1px solid black;
 }
 
@@ -56,12 +56,15 @@
 }
 
 .tooltip {
+  font-family: 'Titillium Web', sans-serif;
   position: absolute;
-  background: lightsteelblue;
-  width: 80px;
-  height: 30px;
+  background: #ffde00;
+  width: 150px;
+  height: 150px;
   padding-left: 2px;
   pointer-events: none;
   font: 12px sans-serif black;
   text-align: center;
+  border-radius: 5px;
+  border: 5px solid orange;
 }
