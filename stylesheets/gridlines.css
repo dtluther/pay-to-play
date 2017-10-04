@@ -1,38 +1,55 @@
 body {
-  position: relative;
-  background-color: black ;
-  display: flex;
-  justify-content: center;
-  /*margin: 0 50px;*/
+  display          : flex;
+  position         : relative;
+  background-color : black;
+  justify-content  : center;
 }
 
-
 .line {
-  fill: none;
-  stroke: steelblue;
-  stroke-width: 2px;
+  fill         : none;
+  stroke       : steelblue;
+  stroke-width : 2px;
 }
 
 .gridlines line {
-  stroke: lightgrey;
-  stroke-opacity: 0.7;
-  shape-rendering: crispEdges;
+  stroke : lightgrey;
 }
 
 .gridlines path {
-  stroke-width: 0;
+  stroke-width : 0;
 }
 
 .domain {
-  stroke: lightgrey;
+  stroke : lightgrey;
 }
 
 .axis line {
-  stroke-width: 2px;
-  stroke: lightgrey;
+  stroke       : lightgrey;
+  stroke-width : 2px;
 }
 
 .axis text {
-  font-size: 14px;
-  fill: lightgrey;
+  fill      : lightgrey;
+  font-size : 14px;
+}
+
+.axis-label {
+  fill        : #a8a8a8;
+  font-family : 'Titillium Web',
+                sans-serif;
+  font-size   : 18px;
+}
+
+.title {
+  fill        : #a8a8a8;
+  font-family : 'Titillium Web',
+                sans-serif;
+  font-size: 24px;
+}
+
+.sub-title {
+  fill        : #a8a8a8;
+  font-family : 'Titillium Web',
+                sans-serif;
+  font-size: 18px;
 }

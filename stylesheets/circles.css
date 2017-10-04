@@ -1,70 +1,71 @@
 .circle {
-  fill: lightgray;
+  fill : lightgray;
 }
 
 .soccer {
-  fill: blue;
+  fill : blue;
 }
 
 .basketball {
-  fill: turquoise;
+  fill : turquoise;
 }
 
 .tennis {
-  fill: yellow;
+  fill : yellow;
 }
 
 .football {
-  fill: red;
+  fill : red;
 }
 
 .golf {
-  fill: green;
+  fill : green;
 }
 
 .racing {
-  fill: purple;
+  fill : purple;
 }
 
 .track {
-  fill: lightgreen;
+  fill : lightgreen;
 }
 
 .mma {
-  fill: black;
+  fill : darkgray;
 }
 
 .baseball {
-  fill: white;
-  border: 1px solid black;
+  fill : white;
 }
 
 .boxing {
-  fill: pink;
+  fill : pink;
 }
 
 .circle {
-  opacity: 0.7;
-  stroke: black;
-  stroke-width: 2;
-  cursor: pointer;
+  opacity      : 0.75;
+  stroke       : lightgrey;
+  stroke-width : 1.5;
+  cursor       : pointer;
 }
 
 .active {
-  opacity: 1;
-
+  opacity      : 1;
+  stroke       : white;
+  stroke-width : 2;
 }
 
 .tooltip {
-  font-family: 'Titillium Web', sans-serif;
-  position: absolute;
-  background: #ffde00;
-  width: 150px;
-  height: 150px;
-  padding-left: 2px;
-  pointer-events: none;
-  font: 12px sans-serif black;
-  text-align: center;
-  border-radius: 5px;
-  border: 5px solid orange;
+  position       : absolute;
+  width          : 215px;
+  height         : 180px;
+  padding-left   : 2px;
+  border         : 5px solid orange;
+  border-radius  : 5px;
+  background     : #ffde00;
+  text-align     : center;
+  font           : 12px sans-serif black;
+  font-family    : 'Titillium Web',
+                   sans-serif;
+  pointer-events : none;
 }

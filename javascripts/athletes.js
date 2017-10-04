@@ -70,7 +70,7 @@ var athletesJson = {
      "Salary": 16000000,
      "Endorsements": 34000000,
      "Sport": "Golf",
-     "Championships": 22,
+     "Championships": 4,
      "Years_Competing_Professionally": 10
     },
     {
@@ -120,7 +120,7 @@ var athletesJson = {
      "Salary": 3500000,
      "Endorsements": 40000000,
      "Sport": "Golf",
-     "Championships": 48,
+     "Championships": 5,
      "Years_Competing_Professionally": 25
     },
     {
@@ -170,7 +170,7 @@ var athletesJson = {
      "Salary": 107000,
      "Endorsements": 37000000,
      "Sport": "Golf",
-     "Championships": 106,
+     "Championships": 14,
      "Years_Competing_Professionally": 21
     },
     {
@@ -210,7 +210,7 @@ var athletesJson = {
      "Salary": 5500000,
      "Endorsements": 29000000,
      "Sport": "Golf",
-     "Championships": 14,
+     "Championships": 3,
      "Years_Competing_Professionally": 5
     },
     {
@@ -430,7 +430,7 @@ var athletesJson = {
      "Salary": 27000000,
      "Endorsements": 1500000,
      "Sport": "Boxing",
-     "Championships": 49,
+     "Championships": 10,
      "Years_Competing_Professionally": 12
     },
     {
@@ -480,7 +480,7 @@ var athletesJson = {
      "Salary": 16600000,
      "Endorsements": 11000000,
      "Sport": "Golf",
-     "Championships": 17,
+     "Championships": 1,
      "Years_Competing_Professionally": 10
     },
     {

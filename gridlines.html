@@ -14,18 +14,18 @@
 
     </div>
     <script type="text/javascript">
-    var margin = {top: 20, right: 20, bottom: 50, left: 50},
+    var margin = {top: 75, right: 20, bottom: 75, left: 80},
         width = 1000 - margin.left - margin.right,
-        height = 600 - margin.top - margin.bottom;
+        height = 700 - margin.top - margin.bottom;
 
-    var xScale = d3.scaleLinear().domain([0, 30]).range([0, width]);
-    var yScale = d3.scaleLinear().domain([0, 110]).range([height, 0]);
+    var xScale = d3.scaleLinear().domain([0, 26]).range([0, width]);
+    var yScale = d3.scaleLinear().domain([0, 24]).range([height, 0]);
 
     var valueline = d3.line()
         .x(function(d) { return x(d.date); })
         .y(function(d) { return y(d.close); })
 
-    var svg = d3.select(".example-div").append("svg")
+    var svg = d3.select("body").append("svg")
         .attr('class', 'grid')
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
@@ -33,41 +33,39 @@
         .attr("transform",
               "translate(" + margin.left + "," + margin.top + ")");
 
-    // gridlines in x axis function
-    function make_x_gridlines() {
-        return d3.axisBottom(xScale)
-            .ticks(20)
-    }
 
-    // gridlines in y axis function
-    function make_y_gridlines() {
-        return d3.axisLeft(yScale)
-            .ticks(10)
-    }
-
-    // add the X gridlines
+    // x-gridlines
     svg.append("g")
         .attr("class", "gridlines")
         .attr("transform", "translate(0," + height + ")")
-        .call(make_x_gridlines()
+        .call(d3.axisBottom(xScale)
             .tickSize(-height)
             .tickFormat("")
           )
 
-    svg.append('g')
-      .attr('class', 'gridlines')
-      .call(make_y_gridlines()
-            .tickSize(-width)
-            .tickFormat("")
-          )
-
     // x-axis
-    svg.append('g')
-      .attr('class', 'axis')
-      .attr('transform', 'translate(0,' + height + ')')
-      .call(d3.axisBottom(xScale)
+    var xAxis = svg.append('g')
+        .attr('class', 'axis')
+        .attr('transform', 'translate(0,' + height + ')')
+        .call(d3.axisBottom(xScale)
             .tickSize(25)
             .tickPadding(10)
+          )
+
+    // x-axis label
+    svg.append('text')
+        .attr('class', 'axis-label')
+        .attr('x', width / 2)
+        .attr('y', height + margin.top + 20)
+        .style('text-anchor', 'middle')
+        .text('Years Competing Professionally')
+
+    // y gridlines
+    svg.append('g')
+      .attr('class', 'gridlines')
+      .call(d3.axisLeft(yScale)
+            .tickSize(-width)
+            .tickFormat("")
           )
 
     // y-axis
@@ -77,6 +75,30 @@
             .tickSize(25)
             .tickPadding(10)
           )
+
+    // y-axis label
+    svg.append("text")
+        .attr('class', 'axis-label')
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0 - margin.left + 15)
+        .attr("x", 0 - (height / 2))
+        .style("text-anchor", "middle")
+        .text("Number of Major Championships Won");
+
+    // title
+    svg.append('text')
+      .attr('class', 'title')
+      .attr('x', width / 2)
+      .attr('y', 0 - margin.top/2)
+      .style('text-anchor', 'middle')
+      .text('Pay to Play')
+    // sub-title
+    svg.append('text')
+      .attr('class', 'sub-title')
+      .attr('x', width / 2)
+      .attr('y', 0 - margin.top/2 + 24)
+      .style('text-anchor', 'middle')
+      .text('Visualizing the Most Expensive Athletes In the Game')
 
     // getting the data from athletes.js
     var athletes = svg.append('g')
@@ -120,13 +142,13 @@
         return d.Pay / 3000000 * 1.2
       })
       .attr('transform', function(d) {
-        var xPos = d.Years_Competing_Professionally * width / 30;
-        var yPos = d.Championships * height / 110
+        var xPos = d.Years_Competing_Professionally * width / 26;
+        var yPos = d.Championships * height / 24
         return 'translate(' + xPos + ',' + (height - yPos) + ')'
       })
-      .on('mouseover', function(d) {
-        let xTooltip = d.Years_Competing_Professionally * width / 30;
-        let yTooltip = height - (d.Championships * height / 110);
+      .on('mousemove', function(d) {
+        let xTooltip = d.Years_Competing_Professionally * width / 26;
+        let yTooltip = height - (d.Championships * height / 24);
         let r = this.r.baseVal.value;
         console.log(d)
         d3.select(this)
@@ -139,18 +161,16 @@
         tooltipDiv
           .style('opacity', 0.8)
           .style('z-index', 1000)
-          // console.log(xTooltip, yTooltip, this.r.baseVal.value)
+          .style('left', d3.event.pageX + 0.5*r + 'px')
+          .style('top', d3.event.pageY - 3*r + 'px')
           .html(
             d.Name + '<br/>' +
-            'Championships: ' + d.Championships + '<br/>' +
-            '# of Pro Seasons: ' + d.Years_Competing_Professionally + '<br/>'
-
+            'Major Championships: ' + d.Championships + '<br/>' +
+            '# of Pro Seasons: ' + d.Years_Competing_Professionally + '<br/>' +
+            'Total Compensation: ' + d.Pay + '<br/>' +
+            'Salary: ' + d.Salary + '<br/>' +
+            'Endorsements: ' + d.Endorsements
           )
-          // .html(d.Championships)
-          // .html(d.Name)
-          // .html(d.Name)
-          .style('left', xTooltip + 'px')
-          .style('top', yTooltip - r + 'px')
       })
       .on('mouseout', function(d) {
         d3.select(this)
