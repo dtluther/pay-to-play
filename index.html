@@ -10,27 +10,44 @@
     <link rel="stylesheet" href="stylesheets/circles.css">
   </head>
   <body>
-    <ul class="filter-sport-list">
-      <li class="view-by">View By Sport:</li>
-      <li class="filter all" id="all">All</li>
-      <li class="filter soccer" id="soccer">Soccer</li>
-      <li class="filter basketball" id="basketball">Basketball</li>
-      <li class="filter tennis" id="tennis">Tennis</li>
-      <li class="filter football" id="football">Football</li>
-      <li class="filter golf" id="golf">Golf</li>
-      <li class="filter racing" id="racing">Auto Racing</li>
-      <li class="filter track" id="track">Track</li>
-      <li class="filter mma" id="mma">Mixed Martial Arts</li>
-      <li class="filter baseball" id="mma">Baseball</li>
-      <li class="filter boxing" id="boxing">Boxing</li>
-    </ul>
+    <div class="title-div">
+      <h2 id="title">Pay to Play</h2>
+      <h2 id="subtitle">Visualizing the 51 Most Expensive Athletes In the Game</h2>
+    </div>
+
+    <div class="filter-div">
+      <ul class="filter-comp-list">
+        <li class="view-by"  id="view-by-pay">View By Total Compensation:</li>
+        <li class="filter filter-comp all" id="all">All</li>
+        <li class="filter filter-comp" id="below-30m">Below 30M</li>
+        <li class="filter filter-comp" id="30m-40m">30M - 40M</li>
+        <li class="filter filter-comp" id="40m-50m">40M - 50M</li>
+        <li class="filter filter-comp" id="50m-60m">50M - 60M</li>
+        <li class="filter filter-comp" id="above-60m">Above 60M</li>
+      </ul>
+
+      <ul class="filter-sport-list">
+        <li class="view-by" id="view-by-sport">View By Sport:</li>
+        <li class="filter filter-sport all" id="all">All</li>
+        <li class="filter filter-sport soccer" id="soccer">Soccer</li>
+        <li class="filter filter-sport basketball" id="basketball">Basketball</li>
+        <li class="filter filter-sport tennis" id="tennis">Tennis</li>
+        <li class="filter filter-sport football" id="football">Football</li>
+        <li class="filter filter-sport golf" id="golf">Golf</li>
+        <li class="filter filter-sport racing" id="racing">Auto Racing</li>
+        <li class="filter filter-sport track" id="track">Track</li>
+        <li class="filter filter-sport mma" id="mma">Mixed Martial Arts</li>
+        <li class="filter filter-sport baseball" id="mma">Baseball</li>
+        <li class="filter filter-sport boxing" id="boxing">Boxing</li>
+      </ul>
+    </div>
 
     <div class="example-div">
     </div>
     <script type="text/javascript">
-    var margin = {top: 140, right: 20, bottom: 75, left: 80},
+    var margin = {top: 10, right: 20, bottom: 75, left: 80},
         width = 1000 - margin.left - margin.right,
-        height = 700 - margin.top - margin.bottom;
+        height = 600 - margin.top - margin.bottom;
 
     var xScale = d3.scaleLinear().domain([0, 26]).range([0, width]);
     var yScale = d3.scaleLinear().domain([0, 24]).range([height, 0]);
@@ -99,20 +116,31 @@
         .style("text-anchor", "middle")
         .text("Number of Major Championships Won");
 
-    // title
-    svg.append('text')
-      .attr('class', 'title')
-      .attr('x', width / 2)
-      .attr('y', 0 - margin.top/1.5)
-      .style('text-anchor', 'middle')
-      .text('Pay to Play')
-    // sub-title
-    svg.append('text')
-      .attr('class', 'sub-title')
-      .attr('x', width / 2)
-      .attr('y', 0 - margin.top/1.5 + 24)
-      .style('text-anchor', 'middle')
-      .text('Visualizing the Most Expensive Athletes In the Game')
+    // var titleDiv = svg.append('g')
+    //   .attr('class', 'title-div')
+    //   .style('x', width / 2)
+    //   .style('y', 0 - margin.top/1.5)
+    //   .style('width', 200)
+    //   .style('height', 200)
+    //   .style('fill', 'none')
+    //   // .style('stroke', 'white')
+    //   // .style('stroke-width', '2px')
+    //   // .style('text-anchor', 'middle')
+
+    // // title
+    // titleDiv.append('text')
+    //   .attr('class', 'title')
+    //   .attr('x', width / 2)
+    //   .attr('y', 0 - margin.top/1.5)
+    //   .style('text-anchor', 'middle')
+    //   .text('Pay to Play')
+    // // sub-title
+    // titleDiv.append('text')
+    //   .attr('class', 'sub-title')
+    //   .attr('x', width / 2)
+    //   .attr('y', 0 - margin.top/1.5 + 24)
+    //   .style('text-anchor', 'middle')
+    //   .text('Visualizing the Most Expensive Athletes In the Game')
 
     // getting the data from athletes.js
     var athletes = svg.append('g')
@@ -198,17 +226,25 @@
       })
 
 
-      const filterList = document.getElementsByClassName('filter');
-      const filterArray = Array.from(filterList);
-      // filterArray.forEach(x => console.log(x))
-      filterArray.forEach(function(filterEl) {
+      const compFilterList = document.getElementsByClassName('filter-comp')
+      const comptFilterArray = Array.from(compFilterList);
+      compFilterArray.forEach(function(filterEl) {
+        let filteredComp = filterEl.inn
+      })
+
+      const sportFilterList = document.getElementsByClassName('filter-sport');
+      const sportFilterArray = Array.from(sportFilterList);
+      sportFilterArray.forEach(function(filterEl) {
         let filteredSport = filterEl.innerHTML;
 
         filterEl.addEventListener('click', function() {
           let all = d3.selectAll('circle');
+          d3.selectAll('.filter').classed('selected-sport', false)
           if (filteredSport === 'All') {
+            this.className += ' selected-sport'
             all.attr('visibility', 'visible')
           } else {
+            this.className += ' selected-sport'
             let selected = d3.selectAll('circle').filter(function(d, i) {
               return d.Sport === filteredSport
             })

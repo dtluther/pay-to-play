@@ -1,8 +1,10 @@
 body {
   display          : flex;
+  flex-direction: column;
   position         : relative;
-  background-color : black;
+  background-color : #e8e8e8;
   justify-content  : center;
+  align-items: center;
 }
 
 .line {
@@ -12,7 +14,7 @@ body {
 }
 
 .gridlines line {
-  stroke : lightgrey;
+  stroke : #b9b9b9;
 }
 
 .gridlines path {
@@ -20,36 +22,111 @@ body {
 }
 
 .domain {
-  stroke : lightgrey;
+  stroke : #b9b9b9;
 }
 
 .axis line {
-  stroke       : lightgrey;
+  stroke       : #b9b9b9;
   stroke-width : 2px;
 }
 
 .axis text {
-  fill      : lightgrey;
+  fill      : #b9b9b9;
   font-size : 14px;
 }
 
 .axis-label {
-  fill        : #a8a8a8;
+  fill        : #878787;
   font-family : 'Titillium Web',
                 sans-serif;
   font-size   : 18px;
+}
+
+.title-div {
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid black;
+  padding: 0 10px 5px 10px;
+  margin-bottom: 20px;
+}
+
+#title {
+  margin: 0;
+  fill        : #a8a8a8;
+  font-family : 'Titillium Web',
+                sans-serif;
+  font-size   : 26px;
+}
+
+#subtitle {
+  margin: 0;
+  fill        : #a8a8a8;
+  font-family : 'Titillium Web',
+                sans-serif;
+  font-size   : 20px;
 }
 
 .title {
   fill        : #a8a8a8;
   font-family : 'Titillium Web',
                 sans-serif;
-  font-size: 26px;
+  font-size   : 26px;
 }
 
 .sub-title {
   fill        : #a8a8a8;
   font-family : 'Titillium Web',
                 sans-serif;
+  font-size   : 20px;
+}
+
+.view-by {
+  margin      : 0 10px;
+  color       : black;
+  font-family : 'Titillium Web',
+                sans-serif;
+  font-size   : 19px;
+}
+
+.all {
+  color : black;
+}
+
+.filter-div {
+  display        : flex;
+  align-items    : flex-start;
+  flex-direction : column;
+}
+
+ul {
+  /* position: absolute; */
+  /* top: 90px; */
+  display         : flex;
+  margin          : 0 0;
+  align-items     : baseline;
+  font-family     : 'Titillium Web',
+                    sans-serif;
+  font-size       : 18px;
+  justify-content : center;
+  list-style      : none;
+}
+
+.filter {
+  margin : 0 5px;
+  cursor : pointer;
+}
+
+.filter-sport {
+}
+
+.filter:hover {
+  border-bottom : 2px solid;
+  font-size     : 20px;
+}
+
+.selected-sport {
+  border-bottom : 2px solid;
   font-size: 20px;
 }

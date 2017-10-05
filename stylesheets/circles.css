@@ -38,18 +38,18 @@
 }
 
 .mma {
+  fill : #e49343;
+  color : #e49343;
+}
+
+.baseball {
   fill : darkgray;
   color : darkgray;
 }
 
-.baseball {
-  fill : white;
-  color : white;
-}
-
 .boxing {
-  fill : pink;
-  color : pink;
+  fill : #fca2b2;
+  color : #fca2b2;
 }
 
 .circle {
@@ -78,37 +78,4 @@
   font-family    : 'Titillium Web',
                    sans-serif;
   pointer-events : none;
-}
-
-.view-by {
-  color: white;
-  font-size: 18px;
-  font-family: 'Titillium Web',
-                   sans-serif;
-  margin: 0 10px;
-}
-
-.all {
-  color: white;
-}
-
-ul {
-  position: absolute;
-  top: 90px;
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  align-items: baseline;
-  font-family: 'Titillium Web',
-                   sans-serif;
-  font-size: 16px;
-}
-
-.filter {
-  margin: 0 8px;
-  cursor: pointer;
-}
-
-.filter:hover {
-  border-bottom: 2px solid;
 }
