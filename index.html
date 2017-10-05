@@ -10,11 +10,25 @@
     <link rel="stylesheet" href="stylesheets/circles.css">
   </head>
   <body>
-    <div class="example-div">
+    <ul class="filter-sport-list">
+      <li class="view-by">View By Sport:</li>
+      <li class="filter all" id="all">All</li>
+      <li class="filter soccer" id="soccer">Soccer</li>
+      <li class="filter basketball" id="basketball">Basketball</li>
+      <li class="filter tennis" id="tennis">Tennis</li>
+      <li class="filter football" id="football">Football</li>
+      <li class="filter golf" id="golf">Golf</li>
+      <li class="filter racing" id="racing">Auto Racing</li>
+      <li class="filter track" id="track">Track</li>
+      <li class="filter mma" id="mma">Mixed Martial Arts</li>
+      <li class="filter baseball" id="mma">Baseball</li>
+      <li class="filter boxing" id="boxing">Boxing</li>
+    </ul>
 
+    <div class="example-div">
     </div>
     <script type="text/javascript">
-    var margin = {top: 150, right: 20, bottom: 75, left: 80},
+    var margin = {top: 140, right: 20, bottom: 75, left: 80},
         width = 1000 - margin.left - margin.right,
         height = 700 - margin.top - margin.bottom;
 
@@ -100,11 +114,6 @@
       .style('text-anchor', 'middle')
       .text('Visualizing the Most Expensive Athletes In the Game')
 
-
-    // sports filter
-    // var filter = svg.append('div')
-    // filter.append('ul')
-
     // getting the data from athletes.js
     var athletes = svg.append('g')
       .attr('id', 'athletes')
@@ -189,7 +198,29 @@
       })
 
 
+      const filterList = document.getElementsByClassName('filter');
+      const filterArray = Array.from(filterList);
+      // filterArray.forEach(x => console.log(x))
+      filterArray.forEach(function(filterEl) {
+        let filteredSport = filterEl.innerHTML;
 
+        filterEl.addEventListener('click', function() {
+          let all = d3.selectAll('circle');
+          if (filteredSport === 'All') {
+            all.attr('visibility', 'visible')
+          } else {
+            let selected = d3.selectAll('circle').filter(function(d, i) {
+              return d.Sport === filteredSport
+            })
+
+            all.attr('visibility', 'hidden')
+            selected.attr('visibility', 'visible')
+          }
+        })
+      })
+
+      var test = d3.selectAll('circle').filter(function(d, i) { return d.Sport === 'Football' })
+      console.log('blah blah this is test', test);
 
     </script>
   </body>

@@ -3,43 +3,53 @@
 }
 
 .soccer {
-  fill : blue;
+  fill : #3647ff;
+  color : #3647ff;
 }
 
 .basketball {
   fill : turquoise;
+  color : turquoise;
 }
 
 .tennis {
   fill : yellow;
+  color : yellow;
 }
 
 .football {
   fill : red;
+  color : red;
 }
 
 .golf {
   fill : green;
+  color : green;
 }
 
 .racing {
   fill : purple;
+  color : purple;
 }
 
 .track {
   fill : lightgreen;
+  color : lightgreen;
 }
 
 .mma {
   fill : darkgray;
+  color : darkgray;
 }
 
 .baseball {
   fill : white;
+  color : white;
 }
 
 .boxing {
   fill : pink;
+  color : pink;
 }
 
 .circle {
@@ -68,4 +78,37 @@
   font-family    : 'Titillium Web',
                    sans-serif;
   pointer-events : none;
+}
+
+.view-by {
+  color: white;
+  font-size: 18px;
+  font-family: 'Titillium Web',
+                   sans-serif;
+  margin: 0 10px;
+}
+
+.all {
+  color: white;
+}
+
+ul {
+  position: absolute;
+  top: 90px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  font-family: 'Titillium Web',
+                   sans-serif;
+  font-size: 16px;
+}
+
+.filter {
+  margin: 0 8px;
+  cursor: pointer;
+}
+
+.filter:hover {
+  border-bottom: 2px solid;
 }
