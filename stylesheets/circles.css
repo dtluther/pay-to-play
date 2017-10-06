@@ -3,53 +3,53 @@
 }
 
 .soccer {
-  fill : #3647ff;
   color : #3647ff;
+  fill  : #3647ff;
 }
 
 .basketball {
-  fill : #0adec7;
   color : #0adec7;
+  fill  : #0adec7;
 }
 
 .tennis {
-  fill : yellow;
   color : yellow;
+  fill  : yellow;
 }
 
 .football {
-  fill : red;
   color : red;
+  fill  : red;
 }
 
 .golf {
-  fill : #0e6c0e;
   color : #0e6c0e;
+  fill  : #0e6c0e;
 }
 
 .racing {
-  fill : purple;
   color : purple;
+  fill  : purple;
 }
 
 .track {
-  fill : #57c74f;
   color : #57c74f;
+  fill  : #57c74f;
 }
 
 .mma {
-  fill : #e49343;
   color : #e49343;
+  fill  : #e49343;
 }
 
 .baseball {
-  fill : white;
   color : white;
+  fill  : white;
 }
 
 .boxing {
-  fill : #fca2b2;
   color : #fca2b2;
+  fill  : #fca2b2;
 }
 
 .circle {
@@ -81,9 +81,9 @@
 }
 
 .circle {
-  visibility: hidden;
+  visibility : hidden;
 }
 
 .shown-comp.shown-sport {
-  visibility: visible;
+  visibility : visible;
 }
