@@ -8,8 +8,8 @@
 }
 
 .basketball {
-  fill : turquoise;
-  color : turquoise;
+  fill : #1cbdac;
+  color : #1cbdac;
 }
 
 .tennis {
@@ -23,8 +23,8 @@
 }
 
 .golf {
-  fill : green;
-  color : green;
+  fill : #0e6c0e;
+  color : #0e6c0e;
 }
 
 .racing {
@@ -33,8 +33,8 @@
 }
 
 .track {
-  fill : lightgreen;
-  color : lightgreen;
+  fill : #57c74f;
+  color : #57c74f;
 }
 
 .mma {
@@ -43,8 +43,8 @@
 }
 
 .baseball {
-  fill : darkgray;
-  color : darkgray;
+  fill : white;
+  color : white;
 }
 
 .boxing {
