@@ -8,9 +8,14 @@ Check it out here: [http://paytoplay.tech](http://www.paytoplay.tech/)
 ## Technology
 Pay to Play is a frontend application built on JavaScript, HTML, and CSS. The D3.js library (v4) was used to attach data to HTML elements, which enables the user to smoothly and quickly access information about the athletes:
 ```
-athletes.selectAll('.circle')
-  .data(athletesJson.athletes)
-  .enter()
+var svg = d3.select("body").append("svg")
+    .attr('class', 'grid')
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+```
+```
+var athletes = svg.append('g')
+  .attr('class', 'athletes')
 ```
 
 ## Features
