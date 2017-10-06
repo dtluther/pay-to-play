@@ -14,7 +14,7 @@ body {
 }
 
 .gridlines line {
-  stroke : #b9b9b9;
+  stroke : #848484;
 }
 
 .gridlines path {
@@ -22,21 +22,21 @@ body {
 }
 
 .domain {
-  stroke : #b9b9b9;
+  stroke : #848484;
 }
 
 .axis line {
-  stroke       : #b9b9b9;
+  stroke       : #474747;
   stroke-width : 2px;
 }
 
 .axis text {
-  fill      : #b9b9b9;
+  fill      : #474747;
   font-size : 14px;
 }
 
 .axis-label {
-  fill        : #878787;
+  fill        : #474747;
   font-family : 'Titillium Web',
                 sans-serif;
   font-size   : 18px;

@@ -53,16 +53,16 @@
 }
 
 .circle {
-  opacity      : 0.75;
-  stroke       : lightgrey;
+  opacity      : 0.8;
+  stroke       : #474747;
   stroke-width : 1.5;
   cursor       : pointer;
 }
 
 .active {
   opacity      : 1;
-  stroke       : white;
-  stroke-width : 2;
+  stroke       : black;
+  stroke-width : 2.5;
 }
 
 .tooltip {

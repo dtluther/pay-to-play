@@ -192,7 +192,6 @@
         let xTooltip = d.Years_Competing_Professionally * width / 26;
         let yTooltip = height - (d.Championships * height / 24);
         let r = this.r.baseVal.value;
-        console.log(d)
         d3.select(this)
           .classed('active', true);
         d3.select(this)
@@ -304,9 +303,6 @@
           }
         })
       })
-
-      var test = d3.selectAll('circle').filter(function(d, i) { return d.Sport === 'Football' })
-      console.log('blah blah this is test', test);
 
     </script>
   </body>
