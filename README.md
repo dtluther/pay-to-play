@@ -20,3 +20,15 @@ var athletes = svg.append('g')
 
 ## Features
 ### Athlete Tooltip
+In order to create an tooltip with data, D3.js was used to assign JSON data to the athlete HTML elements. With this data stored, I used D3 to create a mouseover tooltip effect which shows specific athlete information related to their compensation and professional career.
+
+INSERT SNAPSHOT HERE
+
+### Combination Filtering
+The user has the option to filter the view both by sport and by total compensation. Using a combination of D3, HTML, and CSS, I used class addition and removal to create filters that adjust the visibility of groups of elements. By styling visibility based on the presence of multiple classes rather than a single class, the athletes shown is derived from multiple filters as opposed to just one.
+
+INSERT SNAPSHOT HERE
+
+## Future Considerations
+* If additional reliable data is obtained, it would be interesting to see what these athletes make in salary relative to their team's salary cap
+* Adding country data for the athletes
