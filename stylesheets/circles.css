@@ -79,3 +79,11 @@
                    sans-serif;
   pointer-events : none;
 }
+
+.circle {
+  visibility: hidden;
+}
+
+.shown-comp.shown-sport {
+  visibility: visible;
+}

@@ -159,25 +159,25 @@
       .attr('class', function(d) {
         switch(d.Sport) {
           case "Soccer":
-            return "circle soccer";
+            return "circle soccer shown-comp shown-sport";
           case "Basketball":
-            return "circle basketball";
+            return "circle basketball shown-comp shown-sport";
           case "Tennis":
-            return "circle tennis";
+            return "circle tennis shown-comp shown-sport";
           case "Football":
-            return "circle football";
+            return "circle football shown-comp shown-sport";
           case "Golf":
-            return "circle golf";
+            return "circle golf shown-comp shown-sport";
           case "Auto Racing":
-            return "circle racing";
+            return "circle racing shown-comp shown-sport";
           case "Track":
-            return "circle track";
+            return "circle track shown-comp shown-sport";
           case "Mixed Martial Arts":
-            return "circle mma";
+            return "circle mma shown-comp shown-sport";
           case "Baseball":
-            return "circle baseball";
+            return "circle baseball shown-comp shown-sport";
           case "Boxing":
-            return "circle boxing";
+            return "circle boxing shown-comp shown-sport";
         }
       })
       .attr('r', function(d) {
@@ -225,32 +225,82 @@
           .style('opacity', 0)
       })
 
+      let compSelectedCircles = (minComp, maxComp) => {
+        let compSelectedCircles = d3.selectAll('circle').filter(function(d, i) {
+          if (minComp && maxComp) {
+            console.log('min and max', minComp, maxComp, d.Pay)
+            return parseInt(d.Pay) > parseInt(minComp) && d.pay <= parseInt(maxComp);
+          } else if (minComp) {
+            return d.Pay > parseInt(minComp);
+          } else if (maxComp) {
+            return d.pay <= parseInt(maxComp);
+          }
+        })
 
+        return compSelectedCircles;
+      }
       const compFilterList = document.getElementsByClassName('filter-comp')
-      const comptFilterArray = Array.from(compFilterList);
+      const compFilterArray = Array.from(compFilterList);
       compFilterArray.forEach(function(filterEl) {
-        let filteredComp = filterEl.inn
+        let filteredComp = filterEl.innerHTML;
+        filterEl.addEventListener('click', function() {
+          let all = d3.selectAll('circle');
+          d3.selectAll('.filter-comp').classed('selected-comp', false);
+
+          let selected;
+          switch(filteredComp) {
+            case 'All':
+              this.className += ' selected-comp';
+              all.classed('shown-comp', true);
+              break;
+            case 'Below 30M':
+              this.className += ' selected-comp';
+              selected = compSelectedCircles(null, 30000000);
+              break;
+            case '30M - 40M':
+              this.className += ' selected-comp';
+              selected = compSelectedCircles(30000000, 40000000);
+              break;
+            case '40M - 50M':
+              this.className += ' selected-comp';
+              selected = compSelectedCircles(40000000, 50000000);
+              break;
+            case '50M - 60M':
+              this.className += ' selected-comp';
+              selected = compSelectedCircles(50000000, 60000000);
+              break;
+            case 'Above 60M':
+              this.className += ' selected-comp';
+              selected = compSelectedCircles(60000000, null);
+              break;
+          }
+
+          if (selected) {
+            console.log(selected)
+          }
+
+        })
       })
 
       const sportFilterList = document.getElementsByClassName('filter-sport');
       const sportFilterArray = Array.from(sportFilterList);
       sportFilterArray.forEach(function(filterEl) {
         let filteredSport = filterEl.innerHTML;
-
         filterEl.addEventListener('click', function() {
           let all = d3.selectAll('circle');
-          d3.selectAll('.filter').classed('selected-sport', false)
+          d3.selectAll('.filter-sport').classed('selected-sport', false);
+
           if (filteredSport === 'All') {
-            this.className += ' selected-sport'
-            all.attr('visibility', 'visible')
+            this.className += ' selected-sport';
+            all.classed('shown-sport', true)
           } else {
-            this.className += ' selected-sport'
+            this.className += ' selected-sport';
             let selected = d3.selectAll('circle').filter(function(d, i) {
-              return d.Sport === filteredSport
+              return d.Sport === filteredSport;
             })
 
-            all.attr('visibility', 'hidden')
-            selected.attr('visibility', 'visible')
+            all.classed('shown-sport', false);
+            selected.classed('shown-sport', true);
           }
         })
       })
