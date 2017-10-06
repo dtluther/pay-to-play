@@ -1,4 +1,4 @@
-![pay_to_play](https://user-images.githubusercontent.com/15662012/31289543-eea7670a-aa7d-11e7-9d63-b73ed0c9d4d4.gif)
+![screen shot 2017-10-06 at 9 48 13 am](https://user-images.githubusercontent.com/15662012/31290082-0e2619a8-aa80-11e7-80d1-a4508c926925.png)
 
 # Pay to Play
 Pay to Play is a data visualization analyzing a subset of the most highly compensated athletes in 2017, according to a [Forbes Article](https://www.forbes.com/athletes/#419a014f55ae). It allows users to see see statistics like number of major championships won, years competing as a professional, total compensation, and additional info when hovering over the athlete's bubble. It also allows for filtering by sport and compensation bracket.
