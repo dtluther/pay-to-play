@@ -106,7 +106,7 @@ ul {
 
 .filter:hover {
   border-bottom : 2px solid;
-  font-size     : 18px;
+  font-size     : 16px;
 }
 
 .selected-comp {
@@ -115,7 +115,7 @@ ul {
 }
 .selected-sport {
   border-bottom : 2px solid;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .credits {
