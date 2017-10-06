@@ -5,7 +5,7 @@
     <title>Pay to Play</title>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="javascripts/athletes.js" charset="utf-8"></script>
-    <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web|Bungee+Inline|Cantarell:400i" rel="stylesheet">
     <link rel="stylesheet" href="stylesheets/gridlines.css">
     <link rel="stylesheet" href="stylesheets/circles.css">
   </head>
@@ -46,8 +46,8 @@
     </div>
     <script type="text/javascript">
     var margin = {top: 10, right: 20, bottom: 75, left: 80},
-        width = 1000 - margin.left - margin.right,
-        height = 600 - margin.top - margin.bottom;
+        width = 900 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom;
 
     var xScale = d3.scaleLinear().domain([0, 26]).range([0, width]);
     var yScale = d3.scaleLinear().domain([0, 24]).range([height, 0]);
@@ -206,7 +206,7 @@
           .style('top', d3.event.pageY - 3*r + 'px')
           .html(
             d.Name + '<br/>' +
-            'Major Championships: ' + d.Championships + '<br/>' +
+            'Major Championships Won: ' + d.Championships + '<br/>' +
             '# of Pro Seasons: ' + d.Years_Competing_Professionally + '<br/>' +
             'Total Compensation: ' + d.Pay + '<br/>' +
             'Salary: ' + d.Salary + '<br/>' +
@@ -305,5 +305,11 @@
       })
 
     </script>
+    <div class="credits">
+      <p>Source: Forbes</p>
+      <p>Number of Championships a & Years Competing gathered from:</p>
+      <p>Wikipedia, transfermarkt.com, landofbasketball.com, boxrec.com</p>
+      <p>Approximated equivalent championships across sports</p>
+    </div>
   </body>
 </html>

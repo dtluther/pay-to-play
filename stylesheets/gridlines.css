@@ -40,6 +40,7 @@ body {
   font-family : 'Titillium Web',
                 sans-serif;
   font-size   : 18px;
+  font-style: italic;
 }
 
 .title-div {
@@ -48,38 +49,22 @@ body {
   flex-direction: column;
   align-items: center;
   border: 2px solid black;
-  padding: 0 10px 5px 10px;
-  margin-bottom: 20px;
+  padding: 0 10px;
+  margin-bottom: 10px;
 }
 
 #title {
   margin: 0;
   fill        : #a8a8a8;
-  font-family : 'Titillium Web',
-                sans-serif;
-  font-size   : 26px;
+  font-family: 'Bungee Inline', cursive;
+  font-size   : 24px;
 }
 
 #subtitle {
   margin: 0;
   fill        : #a8a8a8;
-  font-family : 'Titillium Web',
-                sans-serif;
-  font-size   : 20px;
-}
-
-.title {
-  fill        : #a8a8a8;
-  font-family : 'Titillium Web',
-                sans-serif;
-  font-size   : 26px;
-}
-
-.sub-title {
-  fill        : #a8a8a8;
-  font-family : 'Titillium Web',
-                sans-serif;
-  font-size   : 20px;
+  font-family: 'Cantarell', sans-serif;
+  font-size   : 18px;
 }
 
 .view-by {
@@ -87,7 +72,7 @@ body {
   color       : black;
   font-family : 'Titillium Web',
                 sans-serif;
-  font-size   : 19px;
+  font-size   : 17px;
 }
 
 .all {
@@ -106,7 +91,7 @@ ul {
   align-items     : baseline;
   font-family     : 'Titillium Web',
                     sans-serif;
-  font-size       : 18px;
+  font-size       : 16px;
   justify-content : center;
   list-style      : none;
 }
@@ -121,7 +106,7 @@ ul {
 
 .filter:hover {
   border-bottom : 2px solid;
-  font-size     : 20px;
+  font-size     : 18px;
 }
 
 .selected-comp {
@@ -130,5 +115,19 @@ ul {
 }
 .selected-sport {
   border-bottom : 2px solid;
-  font-size: 20px;
+  font-size: 18px;
+}
+
+.credits {
+  position: absolute;
+  bottom: -30px;
+  left: 0;
+  width: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  font-size: 8px;
+}
+.credits p {
+  margin: 0;
 }
