@@ -226,18 +226,16 @@
       })
 
       let compSelectedCircles = (minComp, maxComp) => {
-        let compSelectedCircles = d3.selectAll('circle').filter(function(d, i) {
+        let compCircles = d3.selectAll('circle').filter(function(d, i) {
           if (minComp && maxComp) {
-            console.log('min and max', minComp, maxComp, d.Pay)
-            return parseInt(d.Pay) > parseInt(minComp) && d.pay <= parseInt(maxComp);
+            return d.Pay > minComp && d.Pay <= maxComp;
           } else if (minComp) {
-            return d.Pay > parseInt(minComp);
+            return d.Pay > minComp;
           } else if (maxComp) {
-            return d.pay <= parseInt(maxComp);
+            return d.Pay <= maxComp;
           }
         })
-
-        return compSelectedCircles;
+        return compCircles;
       }
       const compFilterList = document.getElementsByClassName('filter-comp')
       const compFilterArray = Array.from(compFilterList);
@@ -251,7 +249,6 @@
           switch(filteredComp) {
             case 'All':
               this.className += ' selected-comp';
-              all.classed('shown-comp', true);
               break;
             case 'Below 30M':
               this.className += ' selected-comp';
@@ -276,7 +273,10 @@
           }
 
           if (selected) {
-            console.log(selected)
+            all.classed('shown-comp', false);
+            selected.classed('shown-comp', true);
+          } else {
+            all.classed('shown-comp', true);
           }
 
         })

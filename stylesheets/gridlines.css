@@ -101,8 +101,6 @@ body {
 }
 
 ul {
-  /* position: absolute; */
-  /* top: 90px; */
   display         : flex;
   margin          : 0 0;
   align-items     : baseline;
@@ -126,6 +124,10 @@ ul {
   font-size     : 20px;
 }
 
+.selected-comp {
+  border-bottom: 2px solid;
+  font-size: 2px solid;
+}
 .selected-sport {
   border-bottom : 2px solid;
   font-size: 20px;
