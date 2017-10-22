@@ -175,7 +175,7 @@
         var yPos = d.Championships * height / 24
         return 'translate(' + xPos + ',' + (height - yPos) + ')'
       })
-      .on('click', function(d) {
+      .on('mousemove', function(d) {
         let xTooltip = d.Years_Competing_Professionally * width / 26;
         let yTooltip = height - (d.Championships * height / 24);
         let r = this.r.baseVal.value;
